@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  fluent-bit:
+    build:
+      context: . 
+      dockerfile: Dockerfile
+    container_name: blob-fluent-bit
+    restart: always
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - ./volumes/db-state/:/var/log/
+    command: fluent-bit -c /fluent-bit/etc/fluent-bit.conf 
